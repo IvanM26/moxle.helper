@@ -1,0 +1,40 @@
+{
+  "name": "moxle.helper (R + Shinylive)",
+  "image": "ghcr.io/rocker-org/devcontainer/r-ver:4.4",
+
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
+      "packages": "shiny,shinylive,bslib,httpuv,dplyr,purrr,stringr,jsonlite",
+      "installSystemRequirements": true
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "Posit.shiny",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "r.bracketedPaste": true,
+        "r.plot.useHttpgd": true
+      }
+    }
+  },
+
+  // Pass local git, GitHub CLI, and Claude Code credentials to the container
+	"mounts": [
+      "source=${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+      "source=${localEnv:USERPROFILE}/.config/gh,target=/root/.config/gh,type=bind,consistency=cached",
+	    "source=${localEnv:USERPROFILE}/.claude,target=/root/.claude,type=bind,consistency=cached"
+  ],
+
+  // 3838: live Shiny app during development
+  // 8000: preview of the static Shinylive export (what GitHub Pages will serve)
+  "forwardPorts": [3838, 8000],
+  "portsAttributes": {
+    "3838": { "label": "Shiny (dev)" },
+    "8000": { "label": "Shinylive preview" }
+  }
+}

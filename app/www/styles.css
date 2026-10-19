@@ -1,0 +1,60 @@
+:root {
+  --moxle-green: #538d4e;
+  --moxle-yellow: #c9b458;
+  --moxle-grey: #787c7e;
+}
+
+.hint { font-size: 0.875rem; color: var(--bs-secondary-color); }
+
+.swatch {
+  display: inline-block; width: 0.8em; height: 0.8em;
+  border-radius: 2px; margin-right: 0.3em; vertical-align: -0.05em;
+}
+.swatch-green  { background: var(--moxle-green); }
+.swatch-yellow { background: var(--moxle-yellow); }
+.swatch-grey   { background: var(--moxle-grey); }
+
+/* Board: one column per letter position */
+.board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; max-width: 22rem; }
+.position-col { display: flex; flex-direction: column; gap: 0.4rem; }
+.position-label { text-align: center; font-size: 0.75rem; color: var(--bs-secondary-color); }
+
+.board input, .excluded-input { text-transform: uppercase; font-weight: 700; }
+
+.tile {
+  aspect-ratio: 1; text-align: center; font-size: 1.6rem; padding: 0;
+  border: 2px solid var(--bs-border-color);
+}
+.tile:not(:placeholder-shown) { background: var(--moxle-green); border-color: var(--moxle-green); color: #fff; }
+
+.tile-yellow {
+  text-align: center; font-size: 0.9rem; padding: 0.3rem 0.1rem;
+  border: 2px solid var(--moxle-yellow);
+}
+.tile-yellow:not(:placeholder-shown) { background: color-mix(in srgb, var(--moxle-yellow) 25%, transparent); }
+
+.excluded-input { letter-spacing: 0.15em; border: 2px solid var(--moxle-grey); }
+
+/* Read-only keyboard summarising letter status */
+.keyboard { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.key-row { display: flex; gap: 0.25rem; }
+.key {
+  width: 1.9rem; height: 2.3rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 4px; font-weight: 700; font-size: 0.8rem;
+  background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color);
+}
+.key-green  { background: var(--moxle-green);  color: #fff; border-color: transparent; }
+.key-yellow { background: var(--moxle-yellow); color: #fff; border-color: transparent; }
+.key-grey   { background: var(--moxle-grey);   color: #fff; border-color: transparent; opacity: 0.55; }
+
+/* Candidate words */
+.word-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.word-chip {
+  font-family: var(--bs-font-monospace); font-weight: 600; letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem; border-radius: 4px;
+  background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color);
+}
+.word-chip.top-pick { background: var(--moxle-green); color: #fff; border-color: var(--moxle-green); }
+
+.card-header .shiny-input-container { margin-bottom: 0; width: auto; }
+.card-header .form-group { margin-bottom: 0; }

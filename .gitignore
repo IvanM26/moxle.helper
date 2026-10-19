@@ -1,0 +1,10 @@
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Shinylive export output (built by CI and deployed to GitHub Pages)
+site/
+
+# Scryfall bulk data (large; download from https://scryfall.com/docs/api/bulk-data)
+data-raw/*.jsonl.gz
